@@ -27,7 +27,7 @@ export function toBookRequest({ formData }: { formData: FormData }): BookRequest
 	return {
 		name: name as string,
 		description: description as string,
-		price: Number(price), 
+		price: price as string, 
 		publisherID: Number(publisherID), 
 		authorIDs: authorIDs.map(id => Number(id)), 
 	};

@@ -118,6 +118,7 @@ export default function EditBook() {
 						<span>Publisher</span>
 						<select
 							name="publisherID"
+							defaultValue={book.publisherID ?? ""}
 							required
 						>
 							{publishers.publishers?.map(
@@ -125,7 +126,7 @@ export default function EditBook() {
 									<option
 										key={item.ID}
 										value={item.ID ?? ""}
-									selected={item.ID === book.publisherID}>
+									>
 										{item.name ?? ""}
 									</option>
 								)
@@ -144,6 +145,7 @@ export default function EditBook() {
 						<select
 							name="authorIDs"
 							size={authors.authors?.length}
+							defaultValue={book.authors?.map(x => x.ID?.toString() ?? "")}
 							multiple
 							required
 						>
@@ -151,7 +153,6 @@ export default function EditBook() {
 								<option
 									key={item.ID}
 									value={item.ID ?? ""}
-									selected={book.authors?.some((author)=>item.ID === author.ID)}
 								>
 									{item.name ?? ""}
 								</option>

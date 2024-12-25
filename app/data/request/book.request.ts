@@ -1,7 +1,7 @@
 export type BookRequest = {
     name: string;
     description: string;
-    price: number;
+    price: string;
     publisherID: number;
     authorIDs: number[];
 }

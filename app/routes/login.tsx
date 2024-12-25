@@ -8,6 +8,8 @@ import { login } from "app/data/auth.remote";
 import { devLog, toUserModel } from "app/utils";
 import { accessToken, commitSession, error, getSession } from "app/sessions";
 import { LoginResponse } from "~/data/response/login.response";
+import { FunctionComponent } from "react";
+import { RetroInput } from "~/ui/retro-input";
 
 export async function loader({ request }: LoaderFunctionArgs) {
 	const session = await getSession(request.headers.get("Cookie"));
@@ -63,8 +65,7 @@ export const meta: MetaFunction = () => {
 		},
 		{
 			name: "description",
-			content:
-				"Login page",
+			content: "Login page",
 		},
 	];
 };
@@ -79,32 +80,83 @@ export default function Login() {
 	const { error } = useLoaderData<typeof loader>();
 
 	return (
-		<div className="container full-width center-main-axis margin-top-16">
-			<div className="container direction-column spacing-v-16">
-				<p>Login</p>
-				<form
-					method="post"
-					className="container direction-column spacing-v-16"
-				>
-					<label htmlFor="email">Email</label>
-					<input
-						id="email"
-						name="email"
-						type="email"
-						required
-					/>
-					<label htmlFor="password">Password</label>
-					<input
-						id="password"
-						name="password"
-						type="password"
-						required
-					/>
+		<div className="flex flex-col gap-2 h-full justify-center items-center">
+			<img
+				src="./books.gif"
+				alt="books"
+				width="70"
+				height="70"
+			/>
+			<h1 className="text-base font-bold text-center">Login</h1>
+			<form
+				method="post"
+				className="w-fit"
+			>
+				<div className="flex flex-col items-center gap-y-2">
+					<div className="flex flex-col w-[288px]">
+						<div className="flex flex-row flex-grow">
+							<div className="flex flex-col flex-grow border border-retro-black bg-retro-white">
+								<RetroInput
+									id="email"
+									name="email"
+									label="Email"
+									type="text"
+									placeholder="Email"
+									// defaultValue="spock@example.com"
+									isRequired={true}
+								/>
+								<RetroInput
+									id="password"
+									name="password"
+									label="Password"
+									type="password"
+									placeholder="Password"
+									// defaultValue="ldoiekr983lko39"
+									isRequired={true}
+								/>
+							</div>
+							<div className="flex flex-col">
+								<div className="h-[4px] w-[4px] bg-transparent"></div>
+								<div className="flex-grow w-[4px] bg-retro-black"></div>
+							</div>
+						</div>
+						<div className="flex flex-row">
+							<div className="h-[4px] w-[4px] bg-transparent"></div>
+							<div className="flex-grow h-[4px] bg-retro-black"></div>
+						</div>
+					</div>
 					{/*avoid using javascript to disabled button. if user has a slow internet or javascript won't load they can't login*/}
-					<button type="submit">Login</button>
-				</form>
-				{error ? <div className="error">{error}</div> : null}
-			</div>
+					<button
+						className="text-base text-retro-link italic font-bold underline"
+						type="submit"
+					>
+						Login
+					</button>
+					<div className="flex flex-col w-[288px]">
+						<div className="flex flex-row flex-grow">
+							<div className="flex flex-col flex-grow border border-retro-black bg-retro-red-1">
+								{/*You jsx here*/}
+								<span className="">Invalid email or password</span>
+							</div>
+							<div className="flex flex-col">
+								<div className="h-[4px] w-[4px] bg-transparent"></div>
+								<div className="flex-grow w-[4px] bg-retro-black"></div>
+							</div>
+						</div>
+						<div className="flex flex-row">
+							<div className="h-[4px] w-[4px] bg-transparent"></div>
+							<div className="flex-grow h-[4px] bg-retro-black"></div>
+						</div>
+					</div>
+					<img
+						src="./door.gif"
+						alt="books"
+						width="130"
+						height="163"
+					/>
+				</div>
+			</form>
+			{error ? <div className="">{error}</div> : null}
 		</div>
 	);
 }

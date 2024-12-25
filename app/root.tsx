@@ -9,11 +9,11 @@ import {
 	useRouteError,
 } from "@remix-run/react";
 
-import appStyleHref from "./app.css?url";
+import stylesheet from "~/tailwind.css?url";
 import { getErrorMessage } from "./utils";
 
 export const links: LinksFunction = () => [
-	{ rel: "stylesheet", href: appStyleHref },
+	{ rel: "stylesheet", href: stylesheet  },
 ];
 
 export const meta: MetaFunction = () => {
@@ -34,7 +34,7 @@ export const meta: MetaFunction = () => {
 // TODO register
 export default function App() {
 	return (
-		<html lang="en">
+		<html lang="en" className="h-full">
 			<head>
 				<meta charSet="utf-8" />
 				<meta
@@ -44,7 +44,7 @@ export default function App() {
 				<Meta />
 				<Links />
 			</head>
-			<body>
+			<body className="bg-retro-yellow h-full">
 				<Outlet />
 				<Scripts />
 			</body>
